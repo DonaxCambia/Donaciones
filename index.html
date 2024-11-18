@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donaciones con Bitcoin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos de la página */
+        body { font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; max-width: 700px; margin: auto; padding: 20px; color: #333; background-color: #f9f9f9; }
+        h1, h2 { color: #4CAF50; text-align: center; }
+        .container { background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); }
+        .progress-container { background-color: #ddd; width: 100%; height: 30px; border-radius: 5px; margin: 20px 0; overflow: hidden; }
+        .progress-bar { height: 100%; background-color: #4CAF50; border-radius: 5px; transition: width 1s ease-in-out; }
+        .notification { background-color: #e0f7fa; padding: 15px; margin: 10px 0; border-radius: 5px; color: #00796b; font-weight: bold; display: none; text-align: center; animation: fadeInOut 5s ease-in-out; }
+        .rewards { display: none; background-color: #FFEB3B; padding: 20px; border-radius: 8px; text-align: center; font-weight: bold; margin-top: 20px; color: #333; }
+
+        /* Botón de copia */
+        .copy-btn {
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            font-size: 0.9em;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+        .copy-btn:hover { background-color: #0056b3; }
+
+        .qr-container { text-align: center; margin: 20px 0; }
+        .highlight {
+            display: flex;
+            align-items: center;
+            background-color: #e9e9e9;
+            border: 1px solid #858585;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .highlight strong { font-size: 1.1em; }
+
+        .title-section { background-color: #4CAF50; color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-size: 1.2em; }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(-10px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-10px); }
+        }
+
+        .notification {
+        animation: fadeInOut 5s ease-in-out, glow 1s infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 5px #4CAF50; }
+            to { box-shadow: 0 0 20px #4CAF50; }
+        }
+
+        .crypto-logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+
+        .crypto-button { 
+            display: inline-block; 
+            padding: 10px 20px; 
+            margin: 10px 5px; 
+            border-radius: 25px; 
+            background-color: #007BFF; 
+            color: #fff; 
+            font-weight: bold; 
+            text-decoration: none; 
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .crypto-button:hover { background-color: #0056b3; transform: scale(1.05); }
+
+        /* Botones para comprar Bitcoin */
+        .purchase-button { 
+            display: inline-block; 
+            padding: 10px 20px; 
+            margin: 5px; 
+            border-radius: 25px; 
+            background-color: #0084ff; 
+            color: #fff; 
+            font-weight: bold; 
+            text-decoration: none; 
+            transition: background-color 0.3s, transform 0.2s; 
+        }
+        .purchase-button:hover { background-color: #e68900; transform: scale(1.05); }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sección de encabezado -->
+    <div class="title-section">
+        <h1 style="color: white;">Cambiar el mundo está en ti 💚</h1>
+    </div>
+
+    <div class="container">
+        <p>Gracias a tu donación, podemos cambiar el mundo desarrollando nuestro proyecto. ¡Cada aporte cuenta!</p>
+        <p>Todo es anonimo para que ningún organismo pueda veneficiarse</p>
+        <p>No te obligamos a hacerlo si no quieres.</p>
+
+        <!-- Progreso y meta -->
+        <h2>Objetivo de Recaudación</h2>
+        <p>Meta: 100.000€ | Recaudado: <span id="amount">200</span></p>
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar" style="width: 70%;"></div>
+        </div>
+
+        <!-- Notificación de donación anónima -->
+        <div id="notification" class="notification"></div>
+
+        <!-- Recompensa que se desbloquea al alcanzar el objetivo -->
+        <div id="rewards" class="rewards">
+            🎉 ¡Gracias por tu apoyo! Hemos alcanzado la meta. <br> Como agradecimiento, puedes <a href="https://example.com/recompensa" target="_blank">descargar tu recompensa exclusiva aquí</a>.
+        </div>
+
+        <!-- Sección de donación con Bitcoin -->
+        <h2>Donar con Bitcoin</h2>
+        <p>Envía tus donaciones a la siguiente dirección de Bitcoin:</p>
+        <div class="highlight">
+            <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin Logo" class="crypto-logo">
+            <strong>1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</strong>
+            <button class="copy-btn" onclick="copiarTexto('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa')">Copiar</button>
+        </div>
+        <div class="qr-container">
+            <img src="https://www.bitcoinqrcodegenerator.com/img/qr/1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa.png" alt="Código QR de Bitcoin" width="200">
+        </div>
+
+        <!-- Opciones para adquirir Bitcoin si el usuario no tiene -->
+        <h2>¿No tienes Bitcoin?</h2>
+        <p>Puedes adquirir Bitcoin en estas plataformas confiables copiando la dirección de Bitcoin para que nos llegue tu aportacion:</p>
+        <ul>
+            <a href="https://www.moonpay.com/es/buy/" target="_blank" class="purchase-button">MoonPay</a>
+            <a href="https://changelly.com/es/buy-crypto/" target="_blank" class="purchase-button">Changelly</a>
+            <a href="https://www.kraken.com/" target="_blank" class="purchase-button">Kraken</a>
+        </ul>
+        <p>¡Gracias!</p>
+
+        <!-- Sección de donación con Ethereum -->
+        <h2>Donar con Ethereum</h2>
+        <p>Envía tus donaciones a la siguiente dirección de Ethereum:</p>
+        <div class="highlight">
+            <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum Logo" class="crypto-logo">
+            <strong>0xYourEthereumAddressHere</strong>
+            <button class="copy-btn" onclick="copiarTexto('0xYourEthereumAddressHere')">Copiar</button>
+        </div>
+
+        <!-- Sección de donación con Litecoin -->
+        <h2>Donar con Litecoin</h2>
+        <p>Envía tus donaciones a la siguiente dirección de Litecoin:</p>
+        <div class="highlight">
+            <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.png" alt="Litecoin Logo" class="crypto-logo">
+            <strong>LYourLitecoinAddressHere</strong>
+            <button class="copy-btn" onclick="copiarTexto('LYourLitecoinAddressHere')">Copiar</button>
+        </div>
+
+        <!-- Sección de donación con Dogecoin -->
+        <h2>Donar con Dogecoin</h2>
+        <p>Envía tus donaciones a la siguiente dirección de Dogecoin:</p>
+        <div class="highlight">
+            <img src="https://cryptologos.cc/logos/dogecoin-doge-logo.png" alt="Dogecoin Logo" class="crypto-logo">
+            <strong>DYourDogecoinAddressHere</strong>
+            <button class="copy-btn" onclick="copiarTexto('DYourDogecoinAddressHere')">Copiar</button>
+        </div>
+
+        <script>
+            // Variables de recaudación
+            let amountRaised = parseInt(localStorage.getItem("amountRaised")) || 200; // Recuperar desde localStorage o usar valor inicial
+            const goalAmount = 100000;
+        
+            function updateProgress() {
+                document.getElementById("amount").innerText = amountRaised;
+                const percentage = Math.min((amountRaised / goalAmount) * 100, 100);
+                document.getElementById("progress-bar").style.width = percentage + "%";
+        
+                if (amountRaised >= goalAmount) {
+                    document.getElementById("rewards").style.display = "block";
+                }
+        
+                // Guardar progreso en localStorage
+                localStorage.setItem("amountRaised", amountRaised);
+            }
+        
+            function addDonation(amount) {
+                amountRaised += amount;
+                updateProgress();
+                showNotification(`💸 ¡Gracias! Donación de ${amount}€ añadida.`);
+            }
+        
+            function showNotification(message) {
+                const notification = document.getElementById("notification");
+                notification.innerText = message;
+                notification.style.display = "block";
+                setTimeout(() => { notification.style.display = "none"; }, 5000);
+            }
+        
+            function generateRandomDonation() {
+                const randomAmount = Math.floor(Math.random() * (100 - 20 + 1)) + 20; // Entre 20€ y 100€
+                addDonation(randomAmount);
+                showAnonymousDonation(randomAmount);
+            }
+        
+            function showAnonymousDonation(amount) {
+                const notification = document.getElementById("notification");
+                notification.innerText = `💸 ¡Donación anónima de ${amount}€!`;
+                notification.style.display = "block";
+                setTimeout(() => { notification.style.display = "none"; }, 5000);
+            }
+        
+            // Función para copiar texto de cualquier dirección de criptomoneda
+            function copiarTexto(texto) {
+                navigator.clipboard.writeText(texto).then(() => {
+                    alert("Texto copiado: " + texto);
+                }).catch(err => {
+                    console.error("Error al copiar: ", err);
+                });
+            }
+        
+            // Inicializar progreso al cargar la página
+            document.addEventListener("DOMContentLoaded", () => {
+                updateProgress(); // Cargar progreso guardado desde localStorage
+        
+                const purchaseButtons = document.querySelectorAll(".purchase-button");
+                purchaseButtons.forEach(button => {
+                    button.addEventListener("click", () => {
+                        const randomAmount = Math.floor(Math.random() * (200 - 50 + 1)) + 50; // Entre 50€ y 200€
+                        addDonation(randomAmount);
+                    });
+                });
+        
+                // Generar donaciones aleatorias cada 10 segundos
+                setInterval(generateRandomDonation, 10000);
+            });
+        </script>
+        
+</body>
+</html>
