@@ -126,7 +126,7 @@
         <p>Envía tus donaciones a la siguiente dirección de Bitcoin:</p>
         <div class="highlight">
             <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin Logo" class="crypto-logo">
-            <strong>1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</strong>
+            <strong>bc1qlluh45jqd4lkerpx63q9vteyjzcjetnkxv3snj</strong>
             <button class="copy-btn" onclick="copiarTexto('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa')">Copiar</button>
         </div>
         <div class="qr-container">
@@ -148,27 +148,11 @@
         <p>Envía tus donaciones a la siguiente dirección de Ethereum:</p>
         <div class="highlight">
             <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum Logo" class="crypto-logo">
-            <strong>0xYourEthereumAddressHere</strong>
+            <strong>0x2b80FEBC36CaAD41d8Ff534db4623b3947B42665</strong>
             <button class="copy-btn" onclick="copiarTexto('0xYourEthereumAddressHere')">Copiar</button>
         </div>
 
-        <!-- Sección de donación con Litecoin -->
-        <h2>Donar con Litecoin</h2>
-        <p>Envía tus donaciones a la siguiente dirección de Litecoin:</p>
-        <div class="highlight">
-            <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.png" alt="Litecoin Logo" class="crypto-logo">
-            <strong>LYourLitecoinAddressHere</strong>
-            <button class="copy-btn" onclick="copiarTexto('LYourLitecoinAddressHere')">Copiar</button>
-        </div>
-
-        <!-- Sección de donación con Dogecoin -->
-        <h2>Donar con Dogecoin</h2>
-        <p>Envía tus donaciones a la siguiente dirección de Dogecoin:</p>
-        <div class="highlight">
-            <img src="https://cryptologos.cc/logos/dogecoin-doge-logo.png" alt="Dogecoin Logo" class="crypto-logo">
-            <strong>DYourDogecoinAddressHere</strong>
-            <button class="copy-btn" onclick="copiarTexto('DYourDogecoinAddressHere')">Copiar</button>
-        </div>
+        
 
         <script>
             // Variables de recaudación
@@ -205,6 +189,10 @@
                 const randomAmount = Math.floor(Math.random() * (100 - 20 + 1)) + 20; // Entre 20€ y 100€
                 addDonation(randomAmount);
                 showAnonymousDonation(randomAmount);
+        
+                // Programar la siguiente donación con un intervalo aleatorio
+                const nextInterval = Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000; // Entre 10s y 30s
+                setTimeout(generateRandomDonation, nextInterval);
             }
         
             function showAnonymousDonation(amount) {
@@ -235,10 +223,11 @@
                     });
                 });
         
-                // Generar donaciones aleatorias cada 10 segundos
-                setInterval(generateRandomDonation, 10000);
+                // Iniciar la primera donación aleatoria con un intervalo inicial
+                const initialInterval = Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000; // Entre 10s y 30s
+                setTimeout(generateRandomDonation, initialInterval);
             });
-        </script>
+        </script>        
         
 </body>
 </html>
