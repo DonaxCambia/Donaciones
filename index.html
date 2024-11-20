@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Estilos de la página */
-        body { font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; max-width: 700px; margin: auto; padding: 20px; color: #333; background-color: #f9f9f9; }
+        body { font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; max-width: 700px; margin: auto; padding: 10px; color: #333; background-color: #f9f9f9; }
         h1, h2 { color: #4CAF50; text-align: center; }
         .container { background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); }
         .progress-container { background-color: #ddd; width: 100%; height: 30px; border-radius: 5px; margin: 20px 0; overflow: hidden; }
@@ -33,6 +33,7 @@
         .highlight {
             display: flex;
             align-items: center;
+            justify-content: space-between; /* Asegura que los elementos tengan espacio entre sí */
             background-color: #e9e9e9;
             border: 1px solid #858585;
             border-radius: 5px;
@@ -92,7 +93,7 @@
         }
         .purchase-button:hover { background-color: #e68900; transform: scale(1.05); }
 
-@media (max-width: 500px) {
+    @media (max-width: 500px) {
 
     .container { 
         padding: 7px;
@@ -106,7 +107,6 @@
         overflow-x: auto;
         white-space: nowrap;
         align-items: center;
-        justify-content: space-between; /* Asegura que los elementos tengan espacio entre sí */
         position: relative; /* Permite el control de posición del botón */
     }
     .crypto-logo {
@@ -120,10 +120,12 @@
 
     }
 }
+
+
     </style>
 </head>
 <body>
-
+<div id="google_translate_element">
     <!-- Sección de encabezado -->
     <div class="title-section">
         <h1 style="color: white;">Cambiar el mundo está en ti 💚</h1>
@@ -151,7 +153,7 @@
 
         <!-- Sección de donación con Bitcoin -->
         <h2>Donar con Bitcoin</h2>
-        <p>Envía tus donaciones a la siguiente dirección de Bitcoin:</p>
+        <p>Envía tus aportaciones a la siguiente dirección de Bitcoin:</p>
         <div class="highlight">
             <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin Logo" class="crypto-logo">
             <strong>bc1qlluh45jqd4lkerpx63q9vteyjzcjetnkxv3snj</strong>
@@ -173,14 +175,14 @@
 
         <!-- Sección de donación con Ethereum -->
         <h2>Donar con Ethereum</h2>
-        <p>Envía tus donaciones a la siguiente dirección de Ethereum:</p>
+        <p>Envía tus aportaciones a la siguiente dirección de Ethereum:</p>
         <div class="highlight">
             <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum Logo" class="crypto-logo">
             <strong>0x2b80FEBC36CaAD41d8Ff534db4623b3947B42665</strong>
             <button class="copy-btn" onclick="copiarTexto('0xYourEthereumAddressHere')">Copiar</button>
         </div>
 
-        
+</div>
 
         <script>
             // Variables de recaudación
@@ -256,6 +258,18 @@
                 setTimeout(generateRandomDonation, initialInterval);
             });
         </script>        
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'es', // Idioma principal de la página
+            includedLanguages: 'en,es,fr', // Idiomas permitidos
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
         
 </body>
 </html>
